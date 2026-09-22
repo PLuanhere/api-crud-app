@@ -1,0 +1,96 @@
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 8px;
+    width: 80%;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    margin: 12px 8px;
+}
+
+input {
+    padding: 8px 16px; 
+    border: 2px solid #8de1ff;
+    border-radius: 8px;
+}
+
+.input select {
+    width: 200px;
+    border: 2px solid #8de1ff;
+    border-radius: 8px;
+    padding: 8px 8px;
+}
+
+.input input[type="color"] {
+    width: 200px;
+    padding: 0;
+    border: 2px solid #8de1ff;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.input .color-text {
+    font-size: 14px;
+    font-family: monospace;
+    position: relative;
+}
+
+.btn-group {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    margin-right: 16px;
+    gap: 20px;
+    justify-content: right;
+}
+
+.btn {
+    width: 200px;
+    height: 40px;
+    padding: 8px 32px;
+    border-radius: 16px;
+    border: 2px solid #000;
+}
+
+.btn-add {
+    background-color: rgb(88, 255, 96);
+    box-shadow: 4px 2px 10px #79ff58;
+}
+
+.btn-add:hover {
+    background-color: rgb(98, 214, 104);
+}
+
+.btn-delete:hover {
+    background-color: rgb(168, 29, 29);
+}
+
+.btn-find:hover {
+    background-color: rgb(185, 175, 31);
+}
+
+.btn-delete {
+    background-color: rgb(255, 65, 36);
+    box-shadow: 4px 2px 10px #f2a080;
+}
+
+.input-delete {
+    text-align: right;
+    margin-right: 16px;
+}
+
+.btn-find {
+    background-color: rgb(255, 238, 139);
+    box-shadow: 4px 2px 10px #9f9c3e;
+}

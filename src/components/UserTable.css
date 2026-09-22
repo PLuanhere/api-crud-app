@@ -1,0 +1,44 @@
+.table-block {
+  width: 80%;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.title h2 {
+    text-align: left;
+    color: #f60303;
+}
+
+table {
+  width: max-content;
+  border-collapse: collapse;
+}
+
+th,
+td {
+    border: 2px solid #000;
+    padding: 10px;
+    white-space: nowrap;
+    text-align: left;
+}
+
+th {
+    text-align: center;
+}
+
+.avt {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.name {
+    text-align: center;
+}
+
+.search {
+    margin: 20px 0;
+}

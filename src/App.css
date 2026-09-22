@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.container .btn {
+  margin: 0 16px;
+  background-color: rgb(133, 255, 192);
+  font-size: 16px;
+}
