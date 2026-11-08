@@ -7,21 +7,70 @@ function UserTable() {
     const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [filteredUsers, setFilteredUsers] = useState([]);
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(5);
+    const [sortBy, setSortBy] = useState("id");
+    const [order, setOrder] = useState("asc");
+    const [loading, setLoading] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
 
     useEffect(() => {
-        GET().then((data) => {
-            setUsers(data);
-            setFilteredUsers(data);
+        setLoading(true);
+
+        GET(page, limit, sortBy, order, searchTerm).then((data) => {
+            if(page > 1) {
+                setUsers((oldUsers) => [...oldUsers, ...data]);
+                setFilteredUsers((oldUsers) => [...oldUsers, ...data]);
+            } else {
+                setUsers(data);
+                setFilteredUsers(data);
+            }
+
+            setHasMore(data.length === limit);
+            setLoading(false);
+        }).catch(() => {
+            setLoading(false);
         });
-    }, []);
+    }, [page, limit, sortBy, order, searchTerm]);
 
-    useEffect(() => {
-        const result = users.filter((user) =>
-            String(user.id).includes(searchTerm)
-        );
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value);
+        setPage(1);
+    };
 
-        setFilteredUsers(result);
-    }, [searchTerm, users]);
+    const handleLimit = (e) => {
+        setLimit(Number(e.target.value));
+        setUsers([]);
+        setFilteredUsers([]);
+        setPage(1);
+    };
+
+    const handleSortBy = (e) => {
+        setSortBy(e.target.value);
+        setUsers([]);
+        setFilteredUsers([]);
+        setPage(1);
+    };
+
+    const handleOrder = (e) => {
+        setOrder(e.target.value);
+        setUsers([]);
+        setFilteredUsers([]);
+        setPage(1);
+    };
+
+    const handleScroll = (e) => {
+        const { scrollTop, scrollHeight, clientHeight } = e.target;
+
+        if(
+            scrollTop + clientHeight >= scrollHeight - 20 &&
+            !loading &&
+            hasMore
+        ) {
+            setLoading(true);
+            setPage(page + 1);
+        }
+    };
 
     return (
         <div className='table-block'>
@@ -32,10 +81,26 @@ function UserTable() {
                 <input
                     type="text"
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Nhập Id cần tìm"/>
+                    onChange={handleSearch}
+                    placeholder="Nhập thông tin cần tìm"/>
+                <select value={limit} onChange={handleLimit}>
+                    <option value="5">5 user</option>
+                    <option value="10">10 user</option>
+                </select>
+                <select value={sortBy} onChange={handleSortBy}>
+                    <option value="id">Sort by Id</option>
+                    <option value="name">Sort by Name</option>
+                    <option value="email">Sort by Email</option>
+                    <option value="createdAt">Sort by Created At</option>
+                </select>
+                <select value={order} onChange={handleOrder}>
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
             </div>
-            <div className='table-container'>
+            <div
+                className='table-container virtual-scroll'
+                onScroll={handleScroll}>
                 <table>
                     <thead>
                         <tr>
@@ -102,7 +167,11 @@ function UserTable() {
                         ))}
                     </tbody>
                 </table>
+                {loading && <p className='loading'>Loading...</p>}
             </div>
+            {!hasMore && (
+                <p className='end-data'>Đã tải hết {users.length} user</p>
+            )}
         </div>
     )
 }

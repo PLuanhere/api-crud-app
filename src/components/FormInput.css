@@ -76,6 +76,10 @@ input {
     background-color: rgb(168, 29, 29);
 }
 
+.btn-update:hover {
+    background-color: rgb(40, 133, 209);
+}
+
 .btn-find:hover {
     background-color: rgb(185, 175, 31);
 }
@@ -83,6 +87,11 @@ input {
 .btn-delete {
     background-color: rgb(255, 65, 36);
     box-shadow: 4px 2px 10px #f2a080;
+}
+
+.btn-update {
+    background-color: rgb(88, 175, 247);
+    box-shadow: 4px 2px 10px #80c7f2;
 }
 
 .input-delete {

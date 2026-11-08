@@ -26,6 +26,30 @@ function FormInput() {
         }
     };
 
+    const handleUpdate = async () => {
+        if (!searchId) {
+            alert("Hãy nhập ID pls");
+            return;
+        }
+
+        const res = await fetch(
+            `https://671891927fc4c5ff8f49fcac.mockapi.io/v2/${searchId}`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(input)
+            }
+        );
+
+        if (res.ok) {
+            window.location.reload();
+        } else {
+            alert("ID not found or Failed");
+        }
+    };
+
     const handleSubmit = async (e) => {
 
         const createdAt = {
@@ -40,7 +64,7 @@ function FormInput() {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(input)
+                body: JSON.stringify(createdAt)
             });
         if (res.ok) {
             window.location.reload();
@@ -234,7 +258,7 @@ function FormInput() {
                         type="text"
                         value={searchId}
                         onChange={(e) => setSearchId(e.target.value)}
-                        placeholder="Nhập ID cần XÓA" />
+                        placeholder="Nhập ID cần XÓA hoặc UPDATE" />
                 </div>
                 <div className='btn-group'>
                     <button
@@ -245,6 +269,10 @@ function FormInput() {
                         className="btn btn-delete"
                         onClick={handleDelete}>
                         Delete User by Id</button>
+                    <button
+                        className="btn btn-update"
+                        onClick={handleUpdate}>
+                        Update User by Id</button>
                 </div>
             </div>
         </div>

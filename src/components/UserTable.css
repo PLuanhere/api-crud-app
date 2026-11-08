@@ -7,6 +7,17 @@
   overflow-x: auto;
 }
 
+.virtual-scroll {
+  height: 400px;
+  overflow: auto;
+}
+
+.virtual-scroll th {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+}
+
 .title h2 {
     text-align: left;
     color: #f60303;
@@ -41,4 +52,19 @@ th {
 
 .search {
     margin: 20px 0;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.search select {
+    padding: 8px;
+    border: 2px solid #8de1ff;
+    border-radius: 8px;
+}
+
+.loading,
+.end-data {
+    padding: 12px;
+    text-align: center;
 }
