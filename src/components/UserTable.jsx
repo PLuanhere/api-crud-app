@@ -83,10 +83,6 @@ function UserTable() {
                     value={searchTerm}
                     onChange={handleSearch}
                     placeholder="Nhập thông tin cần tìm"/>
-                <select value={limit} onChange={handleLimit}>
-                    <option value="5">5 user</option>
-                    <option value="10">10 user</option>
-                </select>
                 <select value={sortBy} onChange={handleSortBy}>
                     <option value="id">Sort by Id</option>
                     <option value="name">Sort by Name</option>
